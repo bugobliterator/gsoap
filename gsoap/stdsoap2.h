@@ -527,6 +527,22 @@ extern intmax_t __strtoull(const char*, char**, int);
 #  define HAVE_GMTIME_R
 #  define HAVE_ASCTIME_R
 #  define HAVE_LOCALTIME_R
+# elif defined(LWIP_EMBEDDED)
+#  define HAVE_SNPRINTF
+#  define HAVE_STRRCHR
+#  define HAVE_STRTOD
+#  define HAVE_SSCANF
+#  define HAVE_STRTOL
+#  define HAVE_STRTOUL
+#  define HAVE_STRTOLL
+#  define HAVE_STRTOULL
+#  define HAVE_ISNAN
+#  define HAVE_ISINF
+#  define HAVE_SOCKLEN_T
+#  define HAVE_GMTIME
+#  define HAVE_LOCALTIME
+#  define HAVE_MKTIME
+#  define HAVE_GETHOSTBYNAME_R
 # elif defined(__GLIBC__) || defined(__GNU__) || defined(__GNUC__)
 #  define HAVE_POLL
 #  define HAVE_SNPRINTF
@@ -880,7 +896,7 @@ extern intmax_t __strtoull(const char*, char**, int);
 #  include <netdb.h>
 #  include <netinet/in.h>
 #  include <unistd.h>
-#  include <fcntl.h>
+// #  include <fcntl.h>
 #  ifdef _AIX41
 #   include <sys/select.h>
 #  endif
@@ -2949,7 +2965,9 @@ struct SOAP_CMAC soap
   struct soap_xlist *xlist;
 #endif
   const char *logfile[SOAP_MAXLOGS];
+#ifdef SOAP_DEBUG
   FILE *fdebug[SOAP_MAXLOGS];
+#endif
   struct soap_mlist *mht[SOAP_PTRHASH];
 #ifndef WITH_LEAN
   const char *wsuid;            /* space-separated string of element tags */
@@ -3480,10 +3498,10 @@ SOAP_FMAC1 int SOAP_FMAC2 soap_s2ULONG64(struct soap*, const char*, ULONG64*);
 SOAP_FMAC1 int SOAP_FMAC2 soap_s2char(struct soap*, const char*, char**, int, long minlen, long maxlen, const char *pattern);
 SOAP_FMAC1 int SOAP_FMAC2 soap_s2QName(struct soap*, const char*, char**, long minlen, long maxlen, const char *pattern);
 
-#ifndef WITH_COMPAT
 #ifdef __cplusplus
 SOAP_FMAC1 int SOAP_FMAC2 soap_s2stdQName(struct soap*, const char*, std::string*, long minlen, long maxlen, const char *pattern);
 SOAP_FMAC1 int SOAP_FMAC2 soap_s2stdchar(struct soap*, const char*, std::string*, int, long minlen, long maxlen, const char *pattern);
+#ifndef WITH_COMPAT
 SOAP_FMAC1 int SOAP_FMAC2 soap_s2stdwchar(struct soap*, const char*, std::wstring*, int, long minlen, long maxlen, const char *pattern);
 #endif
 #endif

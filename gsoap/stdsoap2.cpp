@@ -17440,7 +17440,7 @@ soap_s2char(struct soap *soap, const char *s, char **t, int flag, long minlen, l
 
 /******************************************************************************/
 
-#ifndef WITH_COMPAT
+// #ifndef WITH_COMPAT
 #ifdef __cplusplus
 SOAP_FMAC1
 int
@@ -17456,7 +17456,7 @@ soap_s2stdchar(struct soap *soap, const char *s, std::string *t, int flag, long 
   return soap->error;
 }
 #endif
-#endif
+// #endif
 
 /******************************************************************************/
 
@@ -17578,7 +17578,7 @@ soap_s2QName(struct soap *soap, const char *s, char **t, long minlen, long maxle
 
 /******************************************************************************/
 
-#ifndef WITH_COMPAT
+// #ifndef WITH_COMPAT
 #ifdef __cplusplus
 SOAP_FMAC1
 int
@@ -17595,7 +17595,7 @@ soap_s2stdQName(struct soap *soap, const char *s, std::string *t, long minlen, l
   return soap->error;
 }
 #endif
-#endif
+// #endif
 
 /******************************************************************************/
 

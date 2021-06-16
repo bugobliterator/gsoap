@@ -606,6 +606,7 @@ SOAP_WSSE_CLKSKEW value is used as a margin to mitigate clock skew. Keeps
 silent when no timestamp is supplied or no expiration date is included in the
 wsu:Timestamp element.
 */
+#ifndef WITH_LEAN
 SOAP_FMAC1
 int
 SOAP_FMAC2
@@ -626,6 +627,7 @@ soap_wsse_verify_Timestamp(struct soap *soap)
   }
   return SOAP_OK;
 }
+#endif
 
 /******************************************************************************\
  *
@@ -909,6 +911,7 @@ replacing colons with hyphens to produce an xsd:ID value.
 @param[in] tags string of space-separated qualified and unqualified element tag names
 @return SOAP_OK
 */
+#ifndef WITH_LEAN
 SOAP_FMAC1
 int
 SOAP_FMAC2
@@ -918,7 +921,7 @@ soap_wsse_set_wsu_id(struct soap *soap, const char *tags)
   soap->wsuid = soap_strdup(soap, tags);
   return SOAP_OK;
 }
-
+#endif
 /******************************************************************************/
 
 #ifdef __cplusplus
